@@ -1,0 +1,43 @@
+<header class="flex">
+    <h1 class="text">Модульний контроль</h1>
+    <h3 class="text">Виконав: студент групи ІР-31 Славич Тимофій</h3>
+</header>
+<div class="flex">
+    <h1 class="text">Завдання</h1>
+    <h2 class="text">
+        Напишіть програму для розрахунку витрат для некромантів на виклик та утримання створінь. Вартість виклику та утримання буде залежати від типу створіння та його характеристик. <br><br>
+        Умови:
+        Програма має підтримувати різні типи створінь, такі як зомбі, скелети, вампіри, демони тощо.
+        Кожне створіння має власні характеристики, такі як сила, витривалість, рівень загрози, магічні властивості тощо. <br>
+        Витрати для некромантів розраховуються відповідно до таких умов: <br>
+        Для зомбі: (Ставка за виклик * Сила + Витривалість) * Коефіцієнт зомбі <br>
+        Для скелетів: (Ставка за виклик * Сила + 2 * Витривалість) * Коефіцієнт скелета <br>
+        Для вампірів: (Ставка за виклик * Сила + Витривалість + Рівень загрози) * Коефіцієнт вампіра <br>
+        Для демонів: (Ставка за виклик * (Сила + Витривалість) * (1 + Магічні властивості)) * Коефіцієнт демона
+
+    </h2>
+</div>
+<div class="flex">
+    <button (click)="calculate()">Порахувати</button>
+</div>
+  
+<div *ngFor="let creature of Creatures; let i = index" class="flex">
+    <div class="card">
+        <div class="card-text">
+            <h2>{{creature.type.toUpperCase()}} : </h2>
+            <p>Базова ставка за виклик: {{CallRate}}</p>
+            <p>Сила: {{creature.strength}}</p>
+            <p>Витривалість: {{creature.endurance}}</p>
+            <p>Коефіцієнт: {{creature.coefficient}}</p>
+            <p *ngIf="creature.type == 'vampire'">Рівень загрози: {{threatLevel}}</p>
+            <p *ngIf="creature.type == 'demon'">Магічні властивості: {{magicalProperties}} <p>
+            <p>Витрати: {{CostList[i]}}</p>
+        </div>
+        <img *ngIf="creature.type == 'zombie'" src="../../assets/images/zombie.png">
+        <img *ngIf="creature.type == 'skeleton'" src="../../assets/images/skeleton.png">
+        <img *ngIf="creature.type == 'vampire'" src="../../assets/images/vampire.png">
+        <img *ngIf="creature.type == 'demon'" src="../../assets/images/demon.png">
+    </div>
+</div>
+
+  
